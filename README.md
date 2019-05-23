@@ -2,7 +2,7 @@
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/tityus/vue-uploader.svg?style=flat-square)](https://github.com/tityus/vue-uploader)
 [![GitHub issues](https://img.shields.io/github/issues/tityus/vue-uploader.svg?style=flat-square)](https://github.com/tityus/vue-uploader/issues)
-[![license](https://img.shields.io/github/license/tityus/vue-uploader.svg?style=flat-square)](https://github.com/tityus/vue-uploader)
+![GitHub](https://img.shields.io/github/license/tityus/vue-uploader.svg)
 
 upload component for Vue.
 
@@ -23,6 +23,7 @@ import VueUploader from '@tityus/vue-uploader';
 #### In your component
 
 ``` vue
+<script>
 var app = new Vue({
   el: '#app',
   data: {},
@@ -30,7 +31,7 @@ var app = new Vue({
     VueUploader
   }
 })
-
+</script>
 ```
 
 #### In your template
@@ -48,7 +49,28 @@ var app = new Vue({
 
 `target` : `[String, default : '']` : Target of your API/Backend
 
-#### Slot
+## Get response from API
+
+You can get response from your API.
+
+
+#### App component (Template)
+
+``` vue
+<vue-uploader @upload="getResponse"></vue-uploader>
+```
+
+#### App component (Script)
+
+``` vue
+<script>
+  methods: {
+    getResponse(value) {
+      console.log(value);
+    }
+  }
+</script>
+```
 
 ## Example template
 
@@ -57,6 +79,7 @@ var app = new Vue({
   accept="image/*"
   vuetify
   target="/api/upload"
+  @upload="getResponse()" // get data from component
 >
   Select a file // You can change slot's message
 </vue-uploader>
