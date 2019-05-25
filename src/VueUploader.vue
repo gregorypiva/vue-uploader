@@ -58,10 +58,10 @@ export default {
   methods: {
     onSelectFile(e: any) {
       (this as any).file = e.target.files[0];
+      this.$emit('uploadFile', e.target.files[0].name);
       (this as any).upload((this as any).file);
     },
     async upload(file: any) {
-
       const formData = new FormData();
       formData.append('file', file);
 
@@ -74,9 +74,9 @@ export default {
       try {
         let response: any = await fetch((this as any).target, requestOptions);
         response = await (this as any).handleResponse(response);
-        this.$emit('upload', response);
+        this.$emit('uploadResponse', response);
       } catch (e) {
-        this.$emit('upload', e);
+        this.$emit('uploadResponse', e);
       }
     },
     async handleResponse(response: any) {

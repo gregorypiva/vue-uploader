@@ -66,7 +66,13 @@ You can get response from your API.
 #### App component (Template)
 
 ``` vue
-<vue-uploader @upload="getResponse"></vue-uploader>
+<vue-uploader @uploadResponse="getResponse"></vue-uploader>
+```
+
+You can get file selected
+
+``` vue
+<vue-uploader @uploadFile="getFile"></vue-uploader>
 ```
 
 #### App component (Script)
