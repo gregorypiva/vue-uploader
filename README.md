@@ -4,7 +4,8 @@
 [![GitHub issues](https://img.shields.io/github/issues/tityus/vue-uploader.svg?style=flat-square)](https://github.com/tityus/vue-uploader/issues)
 ![GitHub](https://img.shields.io/github/license/tityus/vue-uploader.svg)
 
-upload component for Vue.
+Upload async component for Vue and compatible with Vuetify.
+
 
 ## Install
 
@@ -45,9 +46,17 @@ var app = new Vue({
 
 `accept` : `[String, default : '']` : Specifies what file types the user can pick.
 
-`vuetify` : `[Boolean, default: false]` : Specifies aspect of input
-
 `target` : `[String, default : '']` : Target of your API/Backend
+
+`selected` : `[Boolean, default: false]` : Show selected file
+
+`vuetify` : `[Boolean, default: false]` : Transform to vuetify button.
+
+#### Vuetify props
+
+`dark`, `flat`, `fab`, `large`, `outline` : `[Boolean, default: false]` : See more on Vuetify.
+
+`icon` : `[String, default: '']` : Add icon to button.
 
 ## Get response from API
 

@@ -1,18 +1,34 @@
 <template>
   <div id="Uploader">
-    <div v-if="vuetify">
-      <!-- todo: vuetify button -->
-    </div>
-    <div v-else>
-      <label class="upload-btn" for="upload"><slot></slot></label>
-      <input multiple
+    <div>
+      <label
+        :class="[
+          vuetify ? 'v-btn' : 'upload-btn',
+          dark ? 'theme--dark' : 'theme--light',
+          fab ? 'v-btn--floating' : '',
+          flat ? 'v-btn--flat' : '',
+          large ? 'v-btn--large' : '',
+          outline ? 'v-btn--outline v-btn--depressed' : '',
+          color ? vuetify ? `${color}--text` : color : '',
+        ]"
+        for="upload"
+      >
+        <div v-if="vuetify" class="v-btn__content" style="font-family: 'Roboto', sans-serif;">
+          <v-icon v-if="icon" left>
+            {{icon}}
+          </v-icon>
+          <slot></slot>
+        </div>
+        <div v-else class="text"><slot></slot></div>
+      </label>
+      <input
         class="upload-input"
         id="upload"
         type="file"
         :accept="accept"
         @change="onSelectFile($event)"
       />
-      <span class="input-value">{{file.name}}</span>
+      <span v-if="selected" class="input-value text">{{file.name}}</span>
     </div>
  </div>
 </template>
@@ -22,10 +38,17 @@
 export default {
   name: 'Uploader',
   props: {
-    vuetify: Boolean,
     accept: String,
     target: String,
-    send: Boolean,
+    color: String,
+    selected: Boolean,
+    vuetify: Boolean,
+    dark: Boolean,
+    fab: Boolean,
+    flat: Boolean,
+    large: Boolean,
+    icon: String,
+    outline: Boolean,
   },
   data() {
     return {
@@ -77,6 +100,7 @@ export default {
 </script>
 
 <style scoped>
+
 input[type="file"] {
   display: none;
 }
@@ -92,5 +116,9 @@ input[type="file"] {
 	border-radius: 2px;
 	padding: 5px 12px;
 	margin-right: 10px;
+}
+
+.text {
+  font-family: 'Roboto', Arial, sans-serif;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="App">
-    <vue-uploader>Select a file</vue-uploader>
+    <vue-uploader icon="cloud_upload" outline>Select a file</vue-uploader>
   </div>
 </template>
 
