@@ -5,20 +5,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
 import VueUploader from './VueUploader.vue';
 
-@Component({
+export default {
+  name: 'App',
   components: {
     VueUploader,
   },
-})
-export default class App extends Vue {
-
-  error: any = null;
-
-  onClickUpload(value: any) {
-    this.error = value;
-  }
-}
+  data() {
+    return {
+      error: null,
+    };
+  },
+  methods: {
+    onClickUpload(value: any) {
+      (this as any).error = value;
+    },
+  },
+};
 </script>

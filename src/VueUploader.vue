@@ -18,62 +18,62 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
 
-@Component({
+export default {
+  name: 'Uploader',
   props: {
     vuetify: Boolean,
     accept: String,
     target: String,
     send: Boolean,
   },
-})
-export default class Uploader extends Vue {
-
-  file: object = {};
-
-  onSelectFile(e: any) {
-    this.file = e.target.files[0];
-    this.upload(this.file);
-  }
-
-  async upload(file: any) {
-
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const requestOptions = {
-      method: 'POST',
-      headers: {'Content-Type': 'multipart/form-data'},
-      body: formData,
+  data() {
+    return {
+      file: {},
     };
+  },
+  methods: {
+    onSelectFile(e: any) {
+      (this as any).file = e.target.files[0];
+      (this as any).upload((this as any).file);
+    },
+    async upload(file: any) {
 
-    try {
-      let response: any = await fetch((this as any).target, requestOptions);
-      response = await this.handleResponse(response);
-      this.$emit('upload', response);
-    } catch (e) {
-      this.$emit('upload', e);
-    }
-  }
+      const formData = new FormData();
+      formData.append('file', file);
 
-  async handleResponse(response: any) {
-    try {
-      const error = (response && response.message) || response.statusText;
-      if (error) {
-        return Promise.reject(error);
+      const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'multipart/form-data'},
+        body: formData,
+      };
+
+      try {
+        let response: any = await fetch((this as any).target, requestOptions);
+        response = await (this as any).handleResponse(response);
+        this.$emit('upload', response);
+      } catch (e) {
+        this.$emit('upload', e);
       }
-      const text = await response.text();
-      if (!response.ok) {
-        return Promise.reject(JSON.parse(text));
+    },
+    async handleResponse(response: any) {
+      try {
+        const error = (response && response.message) || response.statusText;
+        if (error) {
+          return Promise.reject(error);
+        }
+        const text = await response.text();
+        if (!response.ok) {
+          return Promise.reject(JSON.parse(text));
+        }
+        const data = text && JSON.parse(text);
+        return Promise.resolve(data);
+      } catch (e) {
+        return Promise.reject('Internal Server Error');
       }
-      const data = text && JSON.parse(text);
-      return Promise.resolve(data);
-    } catch (e) {
-      return Promise.reject('Internal Server Error');
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
