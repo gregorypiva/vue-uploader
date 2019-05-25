@@ -37,7 +37,7 @@ var app = new Vue({
 #### In your template
 
 ``` vue
-<vue-uploader></uploader>
+<vue-uploader></vue-uploader>
 
 ```
 
