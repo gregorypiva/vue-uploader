@@ -1,6 +1,6 @@
 {
   "name": "@tityus/vue-uploader",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": false,
   "description": "Vue uploader component.",
   "scripts": {
@@ -45,6 +45,13 @@
       "git add"
     ]
   },
+  "keywords": [
+    "async",
+    "vue",
+    "vuejs",
+    "vuetify",
+    "upload"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/tityus/vue-uploader.git"
