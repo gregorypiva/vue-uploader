@@ -94,7 +94,13 @@ You can get file selected
   accept="image/*"
   vuetify
   target="/api/upload"
-  @upload="getResponse()" // get data from component
+  @uploadResponse="getResponse()" // get data from component
+  @uploadFile="getFile()"
+  vuetify
+  outline
+  color="indigo"
+  large
+  icon="cloud_upload" // Material Icon
 >
   Select a file // You can change slot's message
 </vue-uploader>
