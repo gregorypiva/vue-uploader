@@ -11,7 +11,7 @@
   "main": "dist/vue-uploader.common.js",
   "unpkg": "dist/vue-uploader.umd.min.js",
   "dependencies": {
-    "vuetify": "^1.5.5"
+    "vuetify": "^2.3.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
